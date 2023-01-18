@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Marauders Map</title>
+  <style>
+    #map {
+      position: relative;
+    }
+    .footprint {
+      position: absolute;
+      top: 500;
+      left: 500;
+      transform: scale(0.05);
+    }
+    #name {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+    }
+  </style>
+  <style type="text/css">
+@font-face {
+    font-family: "My Custom Font";
+    src: url("HARRYP__.TTF") format("truetype");
+}
+p.customfont { 
+    font-family: "My Custom Font", Verdana, Tahoma;
+}
+</style>
+  <p style=font-size:40px id="output" class="customfont">Loading...</p>
+  
+  <script>
+    function generate_wizard_name() {
+      var first_name = ["Albus", "Gellert", "Severus", "Minerva", "Remus", "Bellatrix", "Draco", "Hermione", "Ron", "Harry", "Fred", "George", "Neville", "Luna", "Ginny", "Cedric", "Lysander", "Cassius", "Lorcan", "Lyra","Aurora", "Perseus", "Octavia", "Landon", "Emmeline", "Gabriel", "Raphael", "Adira", "Niamh", "Sabine", "Caspian"];
+      var last_name = ["Potter", "Grindelwald", "Snape", "McGonagall", "Lupin", "Lestrange", "Malfoy", "Weasley", "Longbottom", "Lovegood", "Prewett", "Black", "Bones", "Fawley", "Boot", "Scamander", "Flint", "Rosier", "Greengrass", "Carrow","Avery", "Carroway", "Cresswell", "Finch-Fletchley", "Moody", "Parkinson", "Pritchard", "Rowle", "Shafiq", "Thomas", "Warbeck"];
+      var full_name = first_name[Math.floor(Math.random()*first_name.length)] + " " + last_name[Math.floor(Math.random()*last_name.length)];
+      return full_name;
+      }
+  </script>
+  <script>
+      console.log(generate_wizard_name())
+      var paragraph = document.getElementById("output");
+      function choose(choices) {
+      var index = Math.floor(Math.random() * choices.length);
+      return choices[index];
+      }
+      paragraph.innerHTML = "You are watching " + generate_wizard_name() + ", " + choose(["Witch", "Wizard"]) + " from " + choose(["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]) + "!";
+    </script>
+  
+  
+</head>
+<body>
+  <div id="map">
+    <img src="back.png" alt="Marauders Map">
+    <div class="footprint">
+      <img src="footprint.png" alt="footprint">
+      <div id="name"></div>
+    </div>
+  </div>
+  <script>
+    var name = document.getElementById("name");
+    var map = document.getElementById("map");
+    var footprint = document.querySelector(".footprint");
+    var x = Math.floor(Math.random() * 800);
+    var y = Math.floor(Math.random() * 800);
+    var xdir = [-1, 0, 1];
+    var ydir = [-1, 0, 1];
+    setInterval(function() {
+      x += xdir[Math.floor(Math.random()*xdir.length)]*10;
+      y += ydir[Math.floor(Math.random()*ydir.length)]*7;
+      footprint.style.left = x + "px";
+      footprint.style.top = y + "px";
+    }, 50);
+  </script>
+</body>
+</html>
